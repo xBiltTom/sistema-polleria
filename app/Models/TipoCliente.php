@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class TipoCliente extends Model
+{
+    protected $table = 'tipo_cliente';
+    protected $primaryKey = 'idTipo';
+    public $timestamps = false;
+
+    protected $fillable = ['descripcion'];
+
+    public function clientes()
+    {
+        return $this->hasMany(Cliente::class, 'idTipoCliente');
+    }
+}
