@@ -2,35 +2,35 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AddProducto extends Model
 {
+    use HasFactory;
+
     protected $table = 'add_producto';
-    protected $primaryKey = 'idDetalleOpAddProducto';
-    public $timestamps = true;
-    const CREATED_AT = 'timestamps';
-    const UPDATED_AT = null;
+    public $timestamps = false;
+    public $incrementing = false;
+
+    protected $primaryKey = ['idDetalleOpAddProducto', 'idOrden'];
 
     protected $fillable = [
+        'idDetalleOpAddProducto',
         'idOrden',
         'idProducto',
         'cantidad',
-        'precio'
-    ];
-
-    protected $casts = [
-        'precio' => 'float',
-        'timestamps' => 'datetime'
+        'precio',
+        'timestamps',
     ];
 
     public function orden()
     {
-        return $this->belongsTo(OrdenAbastecimiento::class, 'idOrden');
+        return $this->belongsTo(OrdenAbastecimiento::class, 'idOrden', 'idOrden');
     }
 
     public function producto()
     {
-        return $this->belongsTo(Producto::class, 'idProducto');
+        return $this->belongsTo(Producto::class, 'idProducto', 'idProducto');
     }
 }

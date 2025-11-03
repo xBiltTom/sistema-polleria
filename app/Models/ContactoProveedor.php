@@ -2,25 +2,30 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ContactoProveedor extends Model
 {
+    use HasFactory;
+
     protected $table = 'contacto_proveedor';
     protected $primaryKey = 'idContactoProveedor';
-    public $timestamps = false;
+    public $timestamps = true;
+    public $incrementing = false;
 
     protected $fillable = [
+        'idContactoProveedor',
         'nombroContacto',
         'apellidoContacto',
         'dniContacto',
         'emailContacto',
         'cargoContacto',
-        'telefonoContacto'
+        'telefonoContacto',
     ];
 
-    public function proveedor()
+    public function proveedores()
     {
-        return $this->hasOne(Proveedor::class, 'idContactoProveedor');
+        return $this->hasMany(Proveedor::class, 'idContactoProveedor', 'idContactoProveedor');
     }
 }

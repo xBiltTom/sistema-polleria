@@ -22,6 +22,9 @@
                 <a class="nav-link text-white mb-2" href="{{ route('productos.index') }}">
                     📦 Productos
                 </a>
+                <a class="nav-link text-white mb-2" href="{{ route('proveedores.index') }}">
+                    🏢 Proveedores
+                </a>
                 <a class="nav-link text-white mb-2" href="{{ route('mesas.index') }}">
                     🪑 Mesas
                 </a>
@@ -39,6 +42,12 @@
                 </a>
                 <a class="nav-link text-white mb-2" href="{{ route('reportes.index') }}">
                     📈 Reportes
+                </a>
+                <a class="nav-link text-white mb-2" href="{{ route('admin.inventario') }}">
+                    📊 Stock General
+                </a>
+                <a class="nav-link text-white mb-2" href="{{ route('admin.pagos') }}">
+                    💳 Pagos a Proveedores
                 </a>
 
             @elseif($tipoEmpleado == 2)
@@ -66,6 +75,12 @@
                 <hr class="my-2">
                 <a class="nav-link text-white mb-2" href="{{ route('almacen.productos') }}">
                     📦 Productos
+                </a>
+                <a class="nav-link text-white mb-2" href="{{ route('almacen.ordenes') }}">
+                    📋 Órdenes de Suministro
+                </a>
+                <a class="nav-link text-white mb-2" href="{{ route('almacen.recepcion') }}">
+                    📥 Recepción de Mercadería
                 </a>
                 <a class="nav-link text-white mb-2" href="{{ route('almacen.inventario') }}">
                     📊 Inventario

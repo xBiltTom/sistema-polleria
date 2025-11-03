@@ -23,12 +23,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/insumos', fn() => view('admin.insumos'))->name('insumos.index');
         Route::get('/admin/platos', fn() => view('admin.platos'))->name('platos.index');
         Route::get('/admin/productos', fn() => view('admin.productos'))->name('productos.index');
+        Route::get('/admin/proveedores', fn() => view('admin.proveedores'))->name('proveedores.index');
         Route::get('/admin/mesas', fn() => view('admin.mesas'))->name('mesas.index');
         Route::get('/admin/empleados', fn() => view('admin.empleados'))->name('empleados.index');
         Route::get('/admin/ventas', fn() => view('ventas.index'))->name('ventas.index');
         Route::get('/admin/comprobantes', fn() => view('comprobantes.index'))->name('comprobantes.index');
         Route::get('/admin/almacen', fn() => view('almacen.index'))->name('almacen.index');
         Route::get('/admin/reportes', fn() => view('reportes.index'))->name('reportes.index');
+        Route::get('/admin/pagos', fn() => view('admin.pagos'))->name('admin.pagos');
+        Route::get('/admin/inventario', fn() => view('admin.inventario'))->name('admin.inventario');
     });
 
     // Mozo Routes
@@ -49,6 +52,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/almacen-productos', fn() => view('almacen.productos'))->name('almacen.productos');
         Route::get('/almacen-inventario', fn() => view('almacen.inventario'))->name('almacen.inventario');
         Route::get('/almacen-compras', fn() => view('almacen.compras'))->name('almacen.compras');
+        Route::get('/almacen-ordenes', fn() => view('almacen.ordenes'))->name('almacen.ordenes');
+        Route::get('/almacen-recepcion', fn() => view('almacen.recepcion'))->name('almacen.recepcion');
     });
 
     // Profile Routes

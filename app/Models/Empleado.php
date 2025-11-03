@@ -39,4 +39,9 @@ class Empleado extends Model
     {
         return $this->belongsTo(Horario::class, 'idHorario', 'idHorario');
     }
+
+    public function ordenesAbastecimiento()
+    {
+        return $this->hasMany(OrdenAbastecimiento::class, 'idEmpleado', 'idEmpleado');
+    }
 }
