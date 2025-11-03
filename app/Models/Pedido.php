@@ -16,6 +16,9 @@ class Pedido extends Model
     protected $fillable = [
         'fechaPedido',
         'estadoPedido',
+        'estadoPago',
+        'totalPedido',
+        'fechaPago',
         'direccionEntrega',
         'descripcionPedido',
         'idTipoPedido',

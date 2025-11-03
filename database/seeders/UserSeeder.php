@@ -56,23 +56,24 @@ class UserSeeder extends Seeder
             $dni = $usuarioData['dni'];
             $apellido = $usuarioData['apellido'];
             $celular = $usuarioData['celular'];
+            $email = $usuarioData['email'];
             unset($usuarioData['tipo_empleado_id'], $usuarioData['dni'], $usuarioData['apellido'], $usuarioData['celular']);
 
-            $user = User::firstOrCreate(
-                ['email' => $usuarioData['email']],
-                [
+            // Verificar si el usuario ya existe
+            $user = User::where('email', $email)->first();
+            
+            if (!$user) {
+                $user = User::create([
                     'name' => $usuarioData['name'],
+                    'email' => $email,
                     'password' => Hash::make($usuarioData['password']),
                     'email_verified_at' => now(),
-                ]
-            );
+                ]);
 
-            // Obtener el próximo ID disponible
-            $nextId = DB::table('empleado')->max('idEmpleado') + 1;
+                // Obtener el próximo ID disponible
+                $nextId = (DB::table('empleado')->max('idEmpleado') ?? 0) + 1;
 
-            Empleado::updateOrCreate(
-                ['idUsuario' => $user->id],
-                [
+                Empleado::create([
                     'idEmpleado' => $nextId,
                     'dniEmpleado' => $dni,
                     'nombreEmpleado' => $usuarioData['name'],
@@ -81,8 +82,9 @@ class UserSeeder extends Seeder
                     'estado' => 1,
                     'idHorario' => 1,
                     'idTipoEmpleado' => $tipoEmpleadoId,
-                ]
-            );
+                    'idUsuario' => $user->id,
+                ]);
+            }
         }
     }
 }

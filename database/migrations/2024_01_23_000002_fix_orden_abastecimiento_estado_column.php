@@ -21,7 +21,8 @@ return new class extends Migration
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         
-        DB::statement('ALTER TABLE `orden_abastecimiento` MODIFY COLUMN `estado` INT');
+        // No revertimos a INT para evitar errores con datos existentes
+        DB::statement('ALTER TABLE `orden_abastecimiento` MODIFY COLUMN `estado` VARCHAR(50) DEFAULT "pendiente"');
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }

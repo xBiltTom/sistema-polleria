@@ -23,9 +23,10 @@ return new class extends Migration
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         
-        DB::statement('ALTER TABLE `proveedor` MODIFY COLUMN `razonSocial` INT');
-        DB::statement('ALTER TABLE `proveedor` MODIFY COLUMN `ruc` INT');
-        DB::statement('ALTER TABLE `proveedor` MODIFY COLUMN `telefono` INT');
+        // No revertimos para evitar errores con datos existentes
+        DB::statement('ALTER TABLE `proveedor` MODIFY COLUMN `razonSocial` VARCHAR(100)');
+        DB::statement('ALTER TABLE `proveedor` MODIFY COLUMN `ruc` VARCHAR(15)');
+        DB::statement('ALTER TABLE `proveedor` MODIFY COLUMN `telefono` VARCHAR(15)');
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }

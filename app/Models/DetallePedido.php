@@ -17,7 +17,8 @@ class DetallePedido extends Model
         'descripcion',
         'estado',
         'observacion',
-        'idPlato'
+        'idPlato',
+        'idProducto',
     ];
 
     protected $casts = [
@@ -32,6 +33,11 @@ class DetallePedido extends Model
     public function plato()
     {
         return $this->belongsTo(Plato::class, 'idPlato');
+    }
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'idProducto');
     }
 
     public function preparacion()

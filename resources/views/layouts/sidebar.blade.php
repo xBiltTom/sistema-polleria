@@ -52,11 +52,11 @@
 
             @elseif($tipoEmpleado == 2)
                 <hr class="my-2">
-                <a class="nav-link text-white mb-2" href="{{ route('mozo.mesas') }}">
-                    🪑 Mesas
-                </a>
                 <a class="nav-link text-white mb-2" href="{{ route('ventas.sala') }}">
                     🍽️ Venta Sala
+                </a>
+                <a class="nav-link text-white mb-2" href="{{ route('mozo.cobrar-pedido') }}">
+                    💰 Cobrar Pedidos
                 </a>
                 <a class="nav-link text-white mb-2" href="{{ route('ventas.delivery') }}">
                     🚚 Delivery
@@ -64,7 +64,7 @@
 
             @elseif($tipoEmpleado == 3)
                 <hr class="my-2">
-                <a class="nav-link text-white mb-2" href="{{ route('pedidos.cocina') }}">
+                <a class="nav-link text-white mb-2" href="{{ route('cocina.pedidos') }}">
                     👨‍🍳 Pedidos Cocina
                 </a>
                 <a class="nav-link text-white mb-2" href="{{ route('preparacion.index') }}">

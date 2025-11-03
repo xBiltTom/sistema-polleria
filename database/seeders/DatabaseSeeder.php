@@ -15,8 +15,17 @@ class DatabaseSeeder extends Seeder
             TipoEmpleadoSeeder::class,
             HorarioSeeder::class,
             TipoPagoOrdenSeeder::class,
+            TipoClienteSeeder::class,
+            TipoPedidoSeeder::class,
             UserSeeder::class,
             PermissionSeeder::class,
+            CategoriaProductoSeeder::class,
+            CategoriaInsumoSeeder::class,
+            CategoriaPlatoSeeder::class,
+            ProductoSeeder::class,
+            InsumoSeeder::class,
+            PlatoSeeder::class,
+            MesaSeeder::class,
         ]);
     }
 }

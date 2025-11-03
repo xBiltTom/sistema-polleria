@@ -15,7 +15,9 @@ class PreparacionPlato extends Model
         'idDetalle',
         'idPedido',
         'estado',
-        'idCocinero'
+        'idCocinero',
+        'fechaInicio',
+        'fechaFin',
     ];
 
     public function detallePedido()
@@ -30,6 +32,6 @@ class PreparacionPlato extends Model
 
     public function detallesPreparacion()
     {
-        return $this->hasMany(DetallePreparacion::class, ['idDetalle', 'idPedido']);
+        return $this->hasMany(DetallePreparacion::class, 'idDetalle', 'idDetalle');
     }
 }

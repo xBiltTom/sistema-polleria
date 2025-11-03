@@ -36,14 +36,14 @@ Route::middleware('auth')->group(function () {
 
     // Mozo Routes
     Route::middleware(CheckTipoEmpleado::class . ':2')->group(function () {
-        Route::get('/mesas', fn() => view('mozo.mesas'))->name('mozo.mesas');
+        Route::get('/cobrar-pedido', fn() => view('mozo.cobrar-pedido'))->name('mozo.cobrar-pedido');
         Route::get('/ventas-sala', fn() => view('ventas.sala'))->name('ventas.sala');
         Route::get('/ventas-delivery', fn() => view('ventas.delivery'))->name('ventas.delivery');
     });
 
     // Cocinero Routes
     Route::middleware(CheckTipoEmpleado::class . ':3')->group(function () {
-        Route::get('/pedidos-cocina', fn() => view('pedidos.cocina'))->name('pedidos.cocina');
+        Route::get('/pedidos-cocina', fn() => view('cocina.pedidos'))->name('cocina.pedidos');
         Route::get('/preparacion', fn() => view('preparacion.index'))->name('preparacion.index');
     });
 

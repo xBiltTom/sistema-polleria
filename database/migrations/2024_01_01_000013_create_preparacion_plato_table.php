@@ -13,6 +13,8 @@ return new class extends Migration
             $table->integer('idPedido');
             $table->string('estado', 45)->nullable();
             $table->integer('idCocinero');
+            $table->timestamp('fechaInicio')->nullable();
+            $table->timestamp('fechaFin')->nullable();
             $table->timestamps();
 
             $table->primary(['idDetalle', 'idPedido']);

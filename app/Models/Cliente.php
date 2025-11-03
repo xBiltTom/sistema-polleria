@@ -25,6 +25,16 @@ class Cliente extends Model
         'razonSocial',
     ];
 
+    protected static function booted()
+    {
+        static::creating(function ($cliente) {
+            // Si no hay tipo de cliente, asignar tipo 1 (cliente general)
+            if (!$cliente->idTipoCliente) {
+                $cliente->idTipoCliente = 1;
+            }
+        });
+    }
+
     public function tipoCliente()
     {
         return $this->belongsTo(TipoCliente::class, 'idTipoCliente', 'idTipo');
