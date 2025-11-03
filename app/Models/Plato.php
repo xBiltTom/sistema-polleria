@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Plato extends Model
 {
+    use HasFactory;
+
     protected $table = 'plato';
     protected $primaryKey = 'idPlato';
     public $timestamps = false;
@@ -17,12 +20,12 @@ class Plato extends Model
         'estado',
         'stock',
         'urlImagen',
-        'idCategoria'
+        'idCategoria',
     ];
 
     protected $casts = [
         'precioVenta' => 'decimal:2',
-        'estado' => 'boolean'
+        'estado' => 'boolean',
     ];
 
     public function categoria()
@@ -32,6 +35,6 @@ class Plato extends Model
 
     public function detallesPedido()
     {
-        return $this->hasMany(DetallePedido::class, 'idPlato');
+        return $this->hasMany(DetallePedido::class, 'idPlato', 'idPlato');
     }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Pedido extends Model
 {
+    use HasFactory;
+
     protected $table = 'pedido';
     protected $primaryKey = 'idPedido';
     public $timestamps = false;
@@ -18,45 +21,35 @@ class Pedido extends Model
         'idTipoPedido',
         'idCliente',
         'idMesa',
-        'idMozo'
+        'idMozo',
     ];
 
     protected $casts = [
-        'fechaPedido' => 'datetime'
+        'fechaPedido' => 'datetime',
     ];
 
     public function tipoPedido()
     {
-        return $this->belongsTo(TipoPedido::class, 'idTipoPedido');
+        return $this->belongsTo(TipoPedido::class, 'idTipoPedido', 'idTipoPedido');
     }
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class, 'idCliente');
+        return $this->belongsTo(Cliente::class, 'idCliente', 'idCliente');
     }
 
     public function mesa()
     {
-        return $this->belongsTo(Mesa::class, 'idMesa');
+        return $this->belongsTo(Mesa::class, 'idMesa', 'idMesa');
     }
 
     public function mozo()
     {
-        return $this->belongsTo(Empleado::class, 'idMozo');
+        return $this->belongsTo(Empleado::class, 'idMozo', 'idEmpleado');
     }
 
     public function detalles()
     {
-        return $this->hasMany(DetallePedido::class, 'idPedido');
-    }
-
-    public function agregados()
-    {
-        return $this->hasMany(AgregadoPedido::class, 'idPedido');
-    }
-
-    public function pagosPedidos()
-    {
-        return $this->hasMany(PagosPedidos::class, 'idPedido');
+        return $this->hasMany(DetallePedido::class, 'idPedido', 'idPedido');
     }
 }

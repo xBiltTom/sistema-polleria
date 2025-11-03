@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
+    use HasFactory;
+
     protected $table = 'producto';
     protected $primaryKey = 'idProducto';
     public $timestamps = false;
@@ -16,26 +19,16 @@ class Producto extends Model
         'stock',
         'precioVenta',
         'fechaVencimiento',
-        'idCategoriaProducto'
+        'idCategoriaProducto',
     ];
 
     protected $casts = [
-        'precioVenta' => 'float',
-        'fechaVencimiento' => 'date'
+        'fechaVencimiento' => 'date',
+        'precioVenta' => 'decimal:2',
     ];
 
     public function categoria()
     {
-        return $this->belongsTo(CategoriaProducto::class, 'idCategoriaProducto');
-    }
-
-    public function addProductos()
-    {
-        return $this->hasMany(AddProducto::class, 'idProducto');
-    }
-
-    public function agregadosPedido()
-    {
-        return $this->hasMany(AgregadoPedido::class, 'idProducto');
+        return $this->belongsTo(CategoriaProducto::class, 'idCategoriaProducto', 'idCategoriaProducto');
     }
 }

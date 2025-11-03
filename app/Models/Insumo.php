@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Insumo extends Model
 {
+    use HasFactory;
+
     protected $table = 'insumo';
     protected $primaryKey = 'idInsumo';
     public $timestamps = false;
@@ -16,31 +19,21 @@ class Insumo extends Model
         'precioInsumo',
         'fechaVencimiento',
         'estado',
-        'idCategoria'
+        'idCategoria',
     ];
 
     protected $casts = [
+        'fechaVencimiento' => 'date',
         'precioInsumo' => 'decimal:2',
-        'fechaVencimiento' => 'date'
     ];
 
     public function categoria()
     {
-        return $this->belongsTo(CategoriaInsumo::class, 'idCategoria');
+        return $this->belongsTo(CategoriaInsumo::class, 'idCategoria', 'idCategoria');
     }
 
-    public function unidad()
+    public function unidades()
     {
-        return $this->hasOne(UnidadInsumo::class, 'idInsumo');
-    }
-
-    public function addInsumos()
-    {
-        return $this->hasMany(AddInsumo::class, 'idInsumo');
-    }
-
-    public function detallesPreparacion()
-    {
-        return $this->hasMany(DetallePreparacion::class, 'idInsumo');
+        return $this->hasMany(UnidadInsumo::class, 'idInsumo', 'idInsumo');
     }
 }

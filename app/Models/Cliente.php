@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
+    use HasFactory;
+
     protected $table = 'cliente';
     protected $primaryKey = 'idCliente';
     public $timestamps = false;
@@ -19,7 +22,7 @@ class Cliente extends Model
         'email',
         'idTipoCliente',
         'rucCliente',
-        'razonSocial'
+        'razonSocial',
     ];
 
     public function tipoCliente()
@@ -29,6 +32,6 @@ class Cliente extends Model
 
     public function pedidos()
     {
-        return $this->hasMany(Pedido::class, 'idCliente');
+        return $this->hasMany(Pedido::class, 'idCliente', 'idCliente');
     }
 }
